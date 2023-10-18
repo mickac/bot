@@ -1,5 +1,4 @@
 discord
 gspread
-re
 oauth2client
 dotenv
