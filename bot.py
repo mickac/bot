@@ -47,7 +47,7 @@ class SpreadSheetMixtin:
                 }
             }
         }
-        FILE_NAME = 'excelek'
+        FILE_NAME = 'Linki do anime'
 
         gclient = gspread.authorize(
             ServiceAccountCredentials.from_json_keyfile_dict(
