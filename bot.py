@@ -14,7 +14,8 @@ class SpreadSheetMixtin:
 
     def __init__(self, anime, anime_link, season_title):
         pattern = re.compile(r"0️⃣|1️⃣|2️⃣|3️⃣|4️⃣|5️⃣|6️⃣|7️⃣|8️⃣|9️⃣|🔟")
-        self.anime = pattern.sub("", anime)
+        anime = pattern.sub("", anime)
+        self.anime = anime.replace("*", "")
         self.anime_link = anime_link
         self.season_title = season_title
 
@@ -47,7 +48,7 @@ class SpreadSheetMixtin:
                 }
             }
         }
-        FILE_NAME = 'Linki do anime'
+        FILE_NAME = os.getenv('FILE_NAME')
 
         gclient = gspread.authorize(
             ServiceAccountCredentials.from_json_keyfile_dict(
