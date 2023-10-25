@@ -15,6 +15,7 @@ class SpreadSheetMixtin:
     def __init__(self, anime, anime_link, season_title):
         pattern = re.compile(r"0️⃣|1️⃣|2️⃣|3️⃣|4️⃣|5️⃣|6️⃣|7️⃣|8️⃣|9️⃣|🔟")
         anime = pattern.sub("", anime)
+        anime_rstrip = anime.rstrip()
         self.anime = anime.replace("*", "")
         self.anime_link = anime_link
         self.season_title = season_title
