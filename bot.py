@@ -84,9 +84,9 @@ class SpreadSheetMixtin:
                     new_anime_col
                 ), {
                     'backgroundColor': {
-                        'red': self.get_rgb_number(204),
+                        'red': self.get_rgb_number(255),
                         'green': self.get_rgb_number(0),
-                        'blue': self.get_rgb_number(102)
+                        'blue': self.get_rgb_number(127)
                     },
                     'borders': {
                         'bottom': BORDER_STYLE,
@@ -100,7 +100,6 @@ class SpreadSheetMixtin:
                     }
                 }
             )
-            sheet = spreadsheet.worksheet(self.season_title)
 
         selected_anime_row = sheet.find(self.anime).row
         selected_anime_col = sheet.find(self.anime).col
