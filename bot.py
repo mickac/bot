@@ -70,10 +70,35 @@ class SpreadSheetMixtin:
         anime_list = sheet.row_values(4)
         if not sheet.find(self.anime):
             last_anime = anime_list[-1] if anime_list else None
+            new_anime_row = sheet.find(
+                last_anime).row if last_anime else ANIME_LIST_ROW
+            new_anime_col = sheet.find(last_anime).col + 1 if last_anime else 1
             sheet.update_cell(
-                sheet.find(last_anime).row if last_anime else ANIME_LIST_ROW,
-                sheet.find(last_anime).col + 1 if last_anime else 1,
+                new_anime_row,
+                new_anime_col,
                 self.anime
+            )
+            sheet.format(
+                gspread.utils.rowcol_to_a1(
+                    new_anime_row,
+                    new_anime_col
+                ), {
+                    'backgroundColor': {
+                        'red': self.get_rgb_number(204),
+                        'green': self.get_rgb_number(0),
+                        'blue': self.get_rgb_number(102)
+                    },
+                    'borders': {
+                        'bottom': BORDER_STYLE,
+                        'left': BORDER_STYLE,
+                        'right': BORDER_STYLE,
+                        'top': BORDER_STYLE
+                    },
+                    'horizontalAlignment': 'CENTER',
+                    'textFormat': {
+                        'fontSize': 8
+                    }
+                }
             )
             sheet = spreadsheet.worksheet(self.season_title)
 
