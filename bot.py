@@ -96,10 +96,29 @@ class SpreadSheetMixtin:
                     },
                     'horizontalAlignment': 'CENTER',
                     'textFormat': {
+                        'bold': True,
                         'fontSize': 8
                     }
                 }
             )
+
+            sheet_id = sheet_id.worksheet(
+                self.season_title
+            )._properties['sheetId']
+            sheet_id.batch_update({
+                "requests": [
+                    {
+                        "autoResizeDimensions": {
+                            "dimensions": {
+                                "sheetId": sheet_id,
+                                "dimension": "COLUMNS",
+                                "startIndex": new_anime_col,
+                                "endIndex": new_anime_col
+                            }
+                        }
+                    }
+                ]
+            })
 
         selected_anime_row = sheet.find(self.anime).row
         selected_anime_col = sheet.find(self.anime).col
